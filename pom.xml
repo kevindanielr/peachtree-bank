@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+ 
+  <parent>
+    <groupId>com.example</groupId>
+    <artifactId>statics</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+ 
+  <artifactId>peachtree-banking-app</artifactId>
+ 
+  <packaging>pom</packaging>
+ 
+  <name>Backbase :: Statics :: Peachtree Banking App</name>
+ 
+  <properties>
+    <banking.app>${project.basedir}/dist/provisioning-packages/cx6/banking-app.zip</banking.app>
+    <buildConfiguration>shared</buildConfiguration>
+  </properties>
+ 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.backbase.maven.plugins</groupId>
+        <artifactId>bb-maven-plugin</artifactId>
+        <configuration>
+          <widgetCollections>
+            <widgetCollection>
+              <localFile>${banking.app}</localFile>
+            </widgetCollection>
+          </widgetCollections>
+        </configuration>
+      </plugin>
+ 
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <execution>
+            <id>package-ang-project</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <workingDirectory>${project.basedir}/peachtree-project</workingDirectory>
+              <executable>npm.cmd</executable>
+              <arguments>
+                <argument>run</argument>
+                <argument>package:apps</argument>
+                <argument>--</argument>
+                <argument>--configuration=${buildConfiguration}</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

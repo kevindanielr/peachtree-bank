@@ -1,0 +1,15 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+    <container>
+        <name>pt-banking-app-ang</name>
+        <properties>
+            <property name="title" type="string" readonly="true" label="Title" viewHint="admin,designModeOnly">
+                <value>Peachtree Banking App Container</value>
+            </property>
+            <property name="label" type="string">
+                <value>Peachtree Banking App Container</value>
+            </property>
+        </properties>
+    </container>
+</catalog>
